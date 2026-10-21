@@ -1,0 +1,9 @@
+{
+  "k": 8,
+  "failure_rate": 0.05,
+  "failure_model": "exact",
+  "include_host_links": false,
+  "seed": 42,
+  "export": "out/k8_5pct.json",
+  "draw": "out/k8_5pct.png"
+}
