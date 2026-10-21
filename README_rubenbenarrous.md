@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/33776869/README.md)
+[README (1).md](https://github.com/user-attachments/files/33776945/README.1.md)
 # HW1 — Fat-Tree Topology Generation and Analysis
 
 Course 361.2.2460 — Communication Networks and AI for Data Centers, Semester A 2026/27.
@@ -7,7 +7,7 @@ A generator for the **k-ary fat-tree** of Al-Fares, Loukissas & Vahdat [1], with
 link-failure injection and three experiments (basic, intermediate, advanced) on how the
 structure scales and how it degrades under failures.
 
-![k=4 fat-tree](results/topology_k4.png)
+![k=4 fat-tree](fat-tree-hw1/results/topology_k4.png)
 
 ---
 
@@ -60,7 +60,7 @@ switch, a host pair behaves like its pair of edge switches (path length + 2), so
 edge switch (k²/2 BFSs) on the switch graph, weighted by the number of live hosts on each edge,
 gives the exact all-pairs result instead of k³/4 BFSs over hosts.
 
-### Code layout
+### Code layout (folder `fat-tree-hw1/`)
 ```
 fattree.py        FatTree class (nodes, links, addressing, adjacency, JSON export) + sample_failures
 metrics.py        BFS path counting, all-pairs host metrics, switches-with-multiple-failures (+ closed form)
@@ -75,7 +75,10 @@ config.example.json
 
 ## 2. Installation and usage
 
+All code lives in the [`fat-tree-hw1/`](fat-tree-hw1) folder; run every command from there.
+
 ```bash
+cd fat-tree-hw1
 pip install -r requirements.txt          # matplotlib, numpy, pytest
 python -m pytest -q tests                # 15 tests
 python generate.py --k 4                 # intact k=4 fat-tree, prints counts + metrics
@@ -109,7 +112,7 @@ Failed links:  13  (switches with >= 2 failed links: 4)
 Metrics:       {"reachable_fraction": 1.0, "avg_path_length": 5.7165, "max_path_length": 6, ..., "ecmp_fraction": 0.8135, "full_ecmp_pair_fraction": 0.1629}
 ```
 
-![k=4 with failures](results/topology_k4_failures.png)
+![k=4 with failures](fat-tree-hw1/results/topology_k4_failures.png)
 
 ---
 
@@ -122,7 +125,7 @@ raw data is in `results/*.csv`.
 
 **Setup.** Generate intact fat-trees for k = 4, 8, …, 48 and count hosts, switches and links.
 
-![scale](results/scale.png)
+![scale](fat-tree-hw1/results/scale.png)
 
 | k | hosts | switches | links |
 |---|---|---|---|
@@ -144,7 +147,7 @@ the number of hosts (three links per host).
 (`exact` model); 20 random failure sets per point; mean ± one standard deviation shown.
 Metrics are exact over all host pairs.
 
-![failures](results/failures.png)
+![failures](fat-tree-hw1/results/failures.png)
 
 Selected values (means over 20 seeds):
 
@@ -196,7 +199,7 @@ Selected values (means over 20 seeds):
 fails independently with p = 1 % (`bernoulli`); 200 seeds per k. The simulation is compared to
 the closed form E = (5k²/4) · P[Binomial(k, p) ≥ 2].
 
-![multi fail](results/multi_fail.png)
+![multi fail](fat-tree-hw1/results/multi_fail.png)
 
 | k | switches | simulated (mean) | Binomial prediction | % of switches |
 |---|---|---|---|---|
